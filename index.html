@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>ミアビータ会員専用ページ</title>
+</head>
+
+<body>
+    <header class="header__wrapper">
+        <img class="logo__img" src="img/meavita_logo.jpg" alt="ミアビータロゴ画像">
+        <h1 class="hidden">40代から人生を変える</h1>
+        <p class="header__text hidden">自分らしいキャリアを創る</p>
+        <ul class="times_text">
+            <li class="past hidden">過去</li>
+            <li class="present hidden">現在</li>
+            <li class="future hidden">未来</li>
+        </ul>
+        <p class="today_words hidden">Connecting the dots</p>
+
+        <div class="result__wrapper hidden">
+            <button class="result__btn" id="result__btn">キャリアのお悩み診断</button>
+        </div>
+    </header>
+
+    <!-- キャリア診断テストの中身 -->
+
+    <main>
+
+        <div class="form__wrapper">
+            <div class="diagnosis_form" id="diagnosis_form">
+                <p class="form-title">Q.　現在、どんなキャリアのお悩みをお持ちですか？</p>
+                <label for="yarigai" class="form-label" id="yarigai"><input type="checkbox"
+                        id="yarigai">仕事にやりがいを感じない</label>
+                <label for="strength" class="form-label" id="strength"><input type="checkbox"
+                        id="strength">自分の才能や強みの活かし方を知りたい</label>
+                <label for="value" class="form-label" id="value"><input type="checkbox"
+                        id="value">ブレない価値観や自分軸をみつけたい</label>
+                <label for="jobchange" class="form-label" id="jobchange"><input type="checkbox"
+                        id="jobchange">転職をしたい</label>
+                <label for="startup" class="form-label" id="startup"><input type="checkbox"
+                        id="startup">起業・複業をしたい</label>
+                <label for="income" class="form-label" id="income"><input type="checkbox" id="income">収入の柱を増やしたい</label>
+                <label for="balance" class="form-label" id="balance"><input type="checkbox"
+                        id="balance">仕事と子育ての両立に悩んでいる</label>
+            </div>
+            <button class="diagnosis__btn" id="diagnosis__btn">診断する</button>
+        </div>
+
+        <!-- 診断結果 -->
+        <p class="service__text">さらに、キャリアのお悩みを解決したい方にはこちらがオススメです！</p>
+        <div class="service form_hidden">
+            <img class="service__img" src="img/onestep.png" alt="オンラインコミュニティ">
+            <a href="https://meavita.jp/support2/" target="_blank">
+                <img class="service__img" src="img/support.png" alt="個別サポート">
+            </a>
+            <img class="service__img" src="img/nextstage.png" alt="実践ラボ">
+        </div>
+
+
+        <!-- ここからは有料会員のみ利用できるようにしたい -->
+
+        <div class="paidlist__wrapper">
+            <div class="paid__text">
+                <p>オンラインコミュニティ『ONE STEP』、起業・複業 実践ラボ『NEXT STAGE』に</p>
+                <p>お申し込みいただくと下記コンテンツもご利用いただけます。</p>
+            </div>
+            <div class="button_row_1">
+                <button class="future__btn" id="future__btn">理想の人生を描くワーク</button>
+                <button class="books__btn" id="books__btn">人生を変える質問ワーク</button>
+                <button class="words__btn" id="words__btn">視点が変わる本と名言</button>
+            </div>
+            <div class="button_row_2 paid__text">
+                <button class="career__btn" id="career__btn">キャリアの棚卸ワーク</button>
+                <button class="value__btn" id="value__btn">価値観や強み発掘ワーク</button>
+                <button class="bemyself__btn" id="bemyself__btn">自分らしさ図解ワーク</button>
+            </div>
+
+            <p>下記は、実践ラボ『NEXT STAGE』にお申込みいただいた方限定のコンテンツとなります。</p>
+            <div class="button_row_3">
+                <button class="movie__btn" id="movie__btn">起業・複業<br>動画プログラム</button>
+                <button class="value__btn" id="value__btn">独自ポジション<br>発掘ワーク</button>
+                <button class="bemyself__btn" id="bemyself__btn">ファネル・仕組み<br>設計ワーク</button>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <small class="copyrights">copyrights 2023 meavita All RIghts Reserved.</small>
+    </footer>
+
+
+    <!-- JSの記載 -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+
+        //ヘッダーにある要素をページが読み込まれたら、２秒間隔で表示させる
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => document.querySelector(".past").classList.remove("hidden"), 800);
+            setTimeout(() => document.querySelector(".present").classList.remove("hidden"), 1600);
+            setTimeout(() => document.querySelector(".future").classList.remove("hidden"), 2400);
+            setTimeout(() => document.querySelector(".today_words").classList.remove("hidden"), 3200);
+            setTimeout(() => {
+                document.querySelector("h1").classList.remove("hidden");
+                document.querySelector(".header__text").classList.remove("hidden");
+            }, 4000);
+            setTimeout(() => {
+                document.querySelector(".result__wrapper").classList.remove("hidden");
+                document.querySelector("#result__btn").classList.add("bob");
+            }, 4800);
+        });
+
+
+        //キャリア診断にチェックして、診断を押したら//
+        //チェック項目に該当する解決策を条件分岐で表示させたい//
+
+        //キャリア診断のボタンを押すと、チェックリストが表示される//
+        
+
+            //診断ボタンをクリックした時の各チェックボタンごとの表示結果を定義//
+
+            
+    </script>
+
+</body>
+
+</html>

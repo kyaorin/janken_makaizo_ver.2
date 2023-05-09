@@ -14,13 +14,14 @@ body {
 
 /*header
 ---------------------*/
+
 .header__wrapper {
     text-align: center;
 }
 
 .logo__img {
     width: 140px;
-    padding: 20px 0;
+    padding: 25px 0;
 }
 
 h1 {
@@ -86,11 +87,11 @@ h1 {
     transform: translateZ(-20px);
 }
 
-.result__wrapper {
+.career__wrapper {
     margin: 0 0 80px;
 }
 
-.result__btn {
+.career__btn {
     display: block;
     margin: auto;
     width: 250px;
@@ -115,17 +116,17 @@ h1 {
     }
 }
 
-.result__btn.bob {
+.career__btn.bob {
     animation: bob 0.5s;
     animation-iteration-count: 4;
     animation-delay: 1s;
 }
 
 
-/*main
+/*main 診断テスト部分のCSS
 ---------------------*/
 
-.form__wrapper {
+.checkform__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,13 +134,13 @@ h1 {
     margin: 0 0 80px;
 }
 
-.diagnosis_form {
+.check_form {
     background-color: #f1efec;
     display: flex;
     align-items: left;
     flex-direction: column;
     padding: 30px 30px 10px;
-    margin: 0 0 40px;
+    margin: 0 0 15px;
 }
 
 .form-title {
@@ -170,6 +171,28 @@ h1 {
     background-color: #52b4b9;
 }
 
+.result__img {
+    margin: 0 0 5px;
+}
+
+/*main 診断結果部分のCSS
+---------------------*/
+
+.result__wrapper {
+    width: 600px;
+    height: 400px;
+    padding: 10px;
+}
+
+.result__title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #52b4b9;
+    padding: 0 0 10px;
+}
+
+/*main サービス紹介部分のCSS
+---------------------*/
 .service {
     display: flex;
     justify-content: center;

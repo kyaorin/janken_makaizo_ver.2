@@ -229,8 +229,8 @@ h1 {
 }
 
 .paidlist__wrapper button {
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
     /* ボタンの高さを高くする */
     border: 1px solid black;
     padding: 10px;
@@ -248,9 +248,15 @@ h1 {
     margin: 0 0 40px;
 }
 
-.button_row_1 button:hover {
-    background-color: #e9f0f1;
-    color: black;
+.button_row_1 {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px;
+}
+
+.button_row_1 img {
+    width: 320px;
+    height: 320px;
 }
 
 .button_row_2 button:hover {

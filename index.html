@@ -81,9 +81,9 @@
                 <p>お申し込みいただくと下記コンテンツもご利用いただけます。</p>
             </div>
             <div class="button_row_1">
-                <button class="future__btn" id="future__btn">理想の人生を描くワーク</button>
-                <button class="books__btn" id="books__btn">人生を変える質問ワーク</button>
-                <button class="words__btn" id="words__btn">視点が変わる本と名言</button>
+                <img id="word" src="img/word_top.png" alt="人生に影響を与えた本と名言集">
+                <img id="QA" src="img/QA_top.png" alt="１日１問">
+                <img id="lifeplan" src="img/lifeplan_top.png" alt="ライフプラン表">
             </div>
             <div class="button_row_2">
                 <button class="inventory__btn" id="inventory__btn">キャリアの棚卸ワーク</button>
@@ -141,6 +141,10 @@
 
 
         //②チェックリストにチェックをして、診断ボタンを押すと該当する解決策が表示される//
+        //////////////////////////////////////////////
+        ////将来的には、複数選択をして診断した際に、
+        ////結果の画像をスライドショー形式で表示したい
+        //////////////////////////////////////////////
 
         $(document).ready(function () {
             // 診断ボタンがクリックされたときの処理
@@ -206,19 +210,41 @@
                 // 診断ボタンがクリックされたら、3秒後に指定のコード部分が表示されるようにする
                 setTimeout(function () {
                     $("#after_service_img").removeClass("hidden");
-                }, 3000);
+                }, 2500);
 
                 // #after-imagesが表示された3秒後に#paidlistが表示されるようにする
                 setTimeout(function () {
                     $("#paidlist").removeClass("hidden");
-                }, 6000);
+                }, 5000);
 
             });
         });
-                //////////////////////////////////////////////
-                ////複数選択をして診断した際に、
-                ////結果の画像をスライドショー形式で表示したい
-                //////////////////////////////////////////////
+
+        ////////////////////////////////////////////////
+        ///// 人生に影響を与えた本と名言をランダム表示する/////
+        ////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#word").click(function () {
+                const min = 1;
+                const max = 60;
+                const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+                const newSrc = "img/word_" + num + ".png";
+                $("#word").attr("src", newSrc);
+            });
+        });
+
+
+////////////////////////////////////////////////
+        ///// 1日１問、人生を変える質問を表示させたい/////
+        ////////////////////////////////////////////////
+
+
+
+
+
+
 
     </script>
 

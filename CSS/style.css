@@ -269,6 +269,89 @@ h1 {
     color: black;
 }
 
+/*---------------------*/
+/*サポーター絞り込みページのCSS
+---------------------*/
+
+.header__img {
+    margin: 0 0 20px;
+}
+
+/*サポーター検索部分
+---------------------*/
+.select_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    color: black;
+    box-sizing: border-box;
+    margin: 0 0 40px;
+}
+
+.select_text {
+    padding-left: 1.4rem;
+    padding-right: 20px;
+    font-size: 14px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    margin: 0 20px 0 0;
+}
+
+.keyword {
+    width: 380px;
+    padding-left: 1.4rem;
+    padding-right: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.field {
+    padding-right: 20px;
+    font-size: 14px;
+}
+
+.price {
+    padding-left: 1.4rem;
+    padding-right: 20px;
+    font-size: 14px;
+}
+
+.select_btn {
+    padding-left: 1.4rem;
+    padding-right: 20px;
+    font-size: 14px;
+    color: white;
+    border-radius: 10px;
+    background-color: #52b4b9;
+    border-width: 1px;
+    margin: 0 0 0 20px;
+}
+
+/*サポーター表示部分
+---------------------*/
+
+.supporter__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.supporter_text {
+    font-size: 24px;
+    text-align: center;
+}
+
+.supporter_img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 80px;
+}
+
+
 /*footer
 ---------------------*/
 

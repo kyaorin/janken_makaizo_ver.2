@@ -114,3 +114,7 @@ https://magazine.techacademy.jp/magazine/12553
 https://seolaboratory.jp/64959/
 
 https://gmotech.jp/semlabo/seo/blog/span/#:~:text=span%E3%82%BF%E3%82%B0%E3%81%A8%E3%81%AFHTML,%E9%9A%9B%E3%81%AB%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%BE%E3%81%99%E3%80%82
+
+- サポーター検索（食べログ参照）
+
+https://tabelog.com/

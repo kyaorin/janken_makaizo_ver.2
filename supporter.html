@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>サポーター絞り込みページ</title>
+</head>
+
+<body>
+    <header class="header__wrapper">
+        <img class="logo__img" src="img/meavita_logo.jpg" alt="ミアビータロゴ画像">
+        <h1>Let's find your best SUPPORTER</h1>
+        <p class="header__text">あなたの最高のサポーターをみつけよう</p>
+        <img class="header__img" src="img/supporter_header.png" alt="サポーター一覧画像">
+    </header>
+
+    <main>
+
+        <div class="select_wrapper">
+            <p class="select_text">条件を絞る</p>
+            <div class="keyword_wrapper">
+                <input class="keyword" id="Keyword" type="text" name="keyword" size="30" maxlength="45" value
+                    placeholder="キーワード［例：コーチ、名前、起業、転職、子育］" autocomplete="off">
+                <div class="keyword_clear_btn">
+                </div>
+            </div>
+            <label for="select-header">
+                <select class="field" name="field" id="field">
+                    <option value="career" selected>キャリアの見直し</option>
+                    <option value="startup">起業・複業</option>
+                    <option value="jobchange">転職</option>
+                    <option value="childcare">子育て</option>
+                    <option value="strength">強みの発掘</option>
+                    <option value="human">人間関係</option>
+                    <option value="money">お金・資産運用</option>
+                    <option value="health">健康・美容</option>
+                </select>
+            </label>
+            <label for="select-header">
+                <select class="price" name="price" id="price">
+                    <option value="free">無料</option>
+                    <option value="5000" selected>〜4,000円</option>
+                    <option value="8000">〜8,000円</option>
+                    <option value="10000">〜10,000円</option>
+                    <option value="12000">〜12,000円</option>
+                    <option value="14000">〜14,000円</option>
+                    <option value="16000">〜16,000円</option>
+                    <option value="18000">〜18,000円</option>
+                    <option value="20000">〜20,000円</option>
+                </select>
+            </label>
+            <p class="select_btn">検索</p>
+        </div>
+
+        <div class="supporter__wrapper">
+            <div class="supporter_text" id="result_text">あなたにオススメの<br>サポーターは？</div>
+            <img class="supporter_img" id="supporter_img" src="img/best_supporter.png" alt="サポーター写真">
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <small class="copyrights">copyrights 2023 Geek production co.,jp All RIghts Reserved.</small>
+    </footer>
+
+
+    <!-- JSの記載 -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+
+        //GEEKをみつける、ボタンを押したら
+        //オススメGEEKの写真が差し代わるようにしたい！
+
+
+        $("#result__btn").on("click", function () {
+
+            //セレクトボックスの値を取得      
+            const selectedGender = $("#gender").val();
+            const selectedRegion = $("#reigion").val();
+            const selectedLanguage = $("#language").val();
+            const selectedCareer = $("#career").val();
+            const selectedHobby = $("#hobby").val();
+
+
+            //*--if分岐処理--*//
+
+            //画像のパスを格納する変数
+            let view = "";
+
+            if (selectedGender === "男性" &&
+                (selectedRegion === "東京" || selectedRegion === "福岡市") &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React" || selectedLanguage === "PHP" || selectedLanguage === "JAVA" || selectedLanguage === "Python" || selectedLanguage === "Laravel") &&
+                selectedCareer === "10年以上" &&
+                selectedHobby === "ロック"
+            ) {
+                view = "img/geek1.png";
+
+                //表示処理
+                //attr() 関数の第一引数に属性名（この場合は "src"）を指定し、第二引数に属性値を指定する必要があります。
+                $("#result_img").attr("src", view);
+                $("#result_text").text("★ KING of GEEK ★");
+                $("#result_text").css("color", "blue");
+                $("#result_text").css("font-weight", "bold");
+                $("#geek1_audio").get(0).play();
+
+            } if (selectedGender === "男性" &&
+                selectedRegion === "北九州市" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React") &&
+                selectedCareer === "5年以上" &&
+                selectedHobby === "ゲーム"
+            ) {
+                view = "img/geek2.png";
+
+                //表示処理
+
+                $("#result_img").attr("src", view);
+                $("#result_text").text("ビジョンやコンセプトづくりならお任せ");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+
+            } if (selectedGender === "男性" &&
+                selectedRegion === "山口" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React" || selectedLanguage === "PHP" || selectedLanguage === "JAVA" || selectedLanguage === "Python") &&
+                selectedCareer === "5年以上" &&
+                selectedHobby === "サウナ"
+            ) {
+                view = "img/geek3.png";
+
+                //表示処理
+
+                $("#result_img").attr("src", view);
+                $("#result_text").text("焼肉といえば！やすもり3代目");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+                $("#geek3_audio").get(0).play();
+
+            } if (selectedGender === "男性" &&
+                selectedRegion === "北九州市" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React") &&
+                selectedCareer === "5年以上" &&
+                selectedHobby === "登山"
+            ) {
+                view = "img/geek4.png";
+
+                //表示処理
+
+                $("#result_img").attr("src", view);
+                $("#result_text").text("職人技ひかるGEEK");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+
+            } if (selectedGender === "女性" &&
+                selectedRegion === "北九州市" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
+                selectedCareer === "未経験" &&
+                selectedHobby === "ワイン"
+            ) {
+                view = "img/geek5.png";
+
+                //表示処理
+
+                $("#result_img").attr("src", view);
+                $("#result_text").text("ワインとジンとプログラミングに乾杯〜");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+                $("#geek5_audio").get(0).play();
+
+
+            } if (selectedGender === "男性" &&
+                selectedRegion === "福岡市" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
+                selectedCareer === "未経験" &&
+                selectedHobby === "筋トレ"
+            ) {
+                view = "img/geek6.png";
+
+                //表示処理
+
+                $("#result_img").attr("src", view);
+                $("#result_text").text("福岡を明るくするぞ！バカチンガー！！");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+                $("#geek6_audio").get(0).play();
+
+            } if (selectedGender === "男性" &&
+                selectedRegion === "福岡市" &&
+                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
+                selectedCareer === "3年未満" &&
+                selectedHobby === "筋トレ"
+            ) {
+                view = "img/geek7.png";
+
+                //表示処理
+                //attr() 関数の第一引数に属性名（この場合は "src"）を指定し、第二引数に属性値を指定する必要があります。
+                $("#result_img").attr("src", view);
+                $("#result_text").text("よっ！名幹事");
+                $("#result_text").css("color", "black");
+                $("#result_text").css("font-weight", "bold");
+            }
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>

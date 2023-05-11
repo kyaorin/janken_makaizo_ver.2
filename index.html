@@ -65,7 +65,7 @@
             <div class="service">
                 <img class="service__img" src="img/onestep.png" alt="オンラインコミュニティ">
                 <a href="https://meavita.jp/support2/" target="_blank">
-                    <img class="service__img" src="img/support.png" alt="個別サポート">
+                    <img id="support" class="service__img" src="img/support.png" alt="個別サポート">
                 </a>
                 <img class="service__img" src="img/nextstage.png" alt="実践ラボ">
             </div>
@@ -133,11 +133,14 @@
 
 
         //①キャリア診断のボタンを押すと、チェックリストが表示される//
+        //クリックした時にチェック項目の頭位置にスクロールダウンできないか？//
+
         $(document).ready(function () {
             $("#career__btn").click(function () {
                 $(".checkform__wrapper").removeClass("hidden");
             });
         });
+
 
 
         //②チェックリストにチェックをして、診断ボタンを押すと該当する解決策が表示される//
@@ -210,19 +213,52 @@
                 // 診断ボタンがクリックされたら、3秒後に指定のコード部分が表示されるようにする
                 setTimeout(function () {
                     $("#after_service_img").removeClass("hidden");
-                }, 2500);
+                }, 2000);
 
                 // #after-imagesが表示された3秒後に#paidlistが表示されるようにする
                 setTimeout(function () {
                     $("#paidlist").removeClass("hidden");
-                }, 5000);
+                }, 4000);
 
             });
+        });
+
+
+        ///////////////////////////////////////////////////
+        ///個別サポートにマウスを合わせるとオススメに切り替わる///// 
+        ///////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#support").hover(
+                function () {
+                    $(this).attr("src", "img/support_reco.png");
+                },
+                function () {
+                    $(this).attr("src", "img/support.png");
+                }
+            );
+        });
+
+
+        //////////////////////////////////////////////////////////////////
+        ///人生に影響を与えた本と名言にマウスを合わせるとクリック画像と切り替わる///// 
+        //////////////////////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#word").hover(
+                function () {
+                    $(this).attr("src", "img/click.png");
+                },
+                function () {
+                    $(this).attr("src", "img/word_top.png");
+                }
+            );
         });
 
         ////////////////////////////////////////////////
         ///// 人生に影響を与えた本と名言をランダム表示する/////
         ////////////////////////////////////////////////
+
 
         $(document).ready(function () {
             $("#word").click(function () {
@@ -235,10 +271,35 @@
             });
         });
 
+        ///////////////////////////////////////////////////
+        ///１日１問にマウスを合わせるとクリック画像と切り替わる///// 
+        ///////////////////////////////////////////////////
 
-////////////////////////////////////////////////
-        ///// 1日１問、人生を変える質問を表示させたい/////
+        $(document).ready(function () {
+            $("#QA").hover(
+                function () {
+                    $(this).attr("src", "img/today_QA.png");
+                },
+                function () {
+                    $(this).attr("src", "img/QA_top.png");
+                }
+            );
+        });
+
         ////////////////////////////////////////////////
+        ///// 1日１問、人生を変える質問をランダム表示する/////
+        ////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#QA").click(function () {
+                const min = 1;
+                const max = 10;
+                const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+                const newSrc = "img/QA_" + num + ".png";
+                $("#QA").attr("src", newSrc);
+            });
+        });
 
 
 

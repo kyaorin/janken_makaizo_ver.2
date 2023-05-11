@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>ミアビータ会員専用ページ</title>
+</head>
+
+<body>
+    <header class="header__wrapper">
+        <img class="logo__img" src="img/meavita_logo.jpg" alt="ミアビータロゴ画像">
+        <h1 class="hidden">40代から人生を変える</h1>
+        <p class="header__text hidden">自分らしいキャリアを創る</p>
+        <ul class="times_text">
+            <li class="past hidden">過去</li>
+            <li class="present hidden">現在</li>
+            <li class="future hidden">未来</li>
+        </ul>
+        <p class="today_words hidden">Connecting the dots</p>
+
+        <div class="career__wrapper hidden">
+            <button class="career__btn" id="career__btn">キャリアのお悩み診断</button>
+        </div>
+    </header>
+
+    <!-- キャリア診断テストの中身 -->
+
+    <main>
+
+        <div class="checkform__wrapper hidden">
+            <div class="check_form" id="check_form">
+                <p class="form-title">Q.　現在、どんなキャリアのお悩みをお持ちですか？</p>
+                <label for="yarigai" class="form-label" id="yarigai"><input type="checkbox" id="yarigai"
+                        value="yarigai">仕事にやりがいを感じられない</label>
+                <label for="strength" class="form-label" id="strength"><input type="checkbox" id="strength"
+                        value="strength">自分の才能や強みを知りたい</label>
+                <label for="value" class="form-label" id="value"><input type="checkbox" id="value"
+                        value="value">ブレない価値観や自分軸をみつけたい</label>
+                <label for="jobchange" class="form-label" id="jobchange"><input type="checkbox" id="jobchange"
+                        value="jobchange">転職をしたい</label>
+                <label for="startup" class="form-label" id="startup"><input type="checkbox" id="startup"
+                        value="startup">起業・複業をしたい</label>
+                <label for="income" class="form-label" id="income"><input type="checkbox" id="income"
+                        value="income">収入の柱を増やしたい</label>
+                <label for="balance" class="form-label" id="balance"><input type="checkbox" id="balance"
+                        value="balance">仕事と子育ての両立に悩んでいる</label>
+            </div>
+            <img src="img/result.png" alt="診断結果" class="result__img" id="result__img">
+            <button class="diagnosis__btn" id="diagnosis__btn">診断する</button>
+
+        </div>
+
+
+        <!-- 診断結果の表示後、表示されるサービス紹介 -->
+
+        <div class="hidden" id="after_service_img">
+            <p class="service__text">
+                さらに、キャリアのお悩みを解決したい方にはこちらがオススメです！
+            </p>
+            <div class="service">
+                <img class="service__img" src="img/onestep.png" alt="オンラインコミュニティ">
+                <a href="https://meavita.jp/support2/" target="_blank">
+                    <img id="support" class="service__img" src="img/support.png" alt="個別サポート">
+                </a>
+                <img class="service__img" src="img/nextstage.png" alt="実践ラボ">
+            </div>
+        </div>
+
+
+        <!-- 将来的にはここから先のコンテンツは
+            有料会員のみログインすると利用できるようにしたい -->
+
+        <div class="paidlist__wrapper hidden" id="paidlist">
+            <div class="paid__text">
+                <p>オンラインコミュニティ『ONE STEP』、起業・複業 実践ラボ『NEXT STAGE』に</p>
+                <p>お申し込みいただくと下記コンテンツもご利用いただけます。</p>
+            </div>
+            <div class="button_row_1">
+                <img id="word" src="img/word_top.png" alt="人生に影響を与えた本と名言集">
+                <img id="QA" src="img/QA_top.png" alt="１日１問">
+                <img id="lifeplan" src="img/lifeplan_top.png" alt="ライフプラン表">
+            </div>
+            <div class="button_row_2">
+                <button class="inventory__btn" id="inventory__btn">キャリアの棚卸ワーク</button>
+                <button class="value__btn" id="value__btn">価値観と強み発掘ワーク</button>
+                <button class="bemyself__btn" id="bemyself__btn">自分らしさ図解ワーク</button>
+            </div>
+
+            <p>下記は、実践ラボ『NEXT STAGE』にお申込みいただいた方限定のコンテンツとなります。</p>
+            <div class="button_row_3">
+                <button class="movie__btn" id="movie__btn">起業・複業<br>動画プログラム</button>
+                <button class="value__btn" id="value__btn">独自ポジション<br>発掘ワーク</button>
+                <button class="bemyself__btn" id="bemyself__btn">ファネル・仕組み<br>設計ワーク</button>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <small class="copyrights">copyrights 2023 meavita All RIghts Reserved.</small>
+    </footer>
+
+
+    <!-- JSの記載 -->
+    <script>
+
+
+        //ヘッダーにある要素をページが読み込まれたら、２秒間隔で表示させる
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => document.querySelector(".past").classList.remove("hidden"), 800);
+            setTimeout(() => document.querySelector(".present").classList.remove("hidden"), 1600);
+            setTimeout(() => document.querySelector(".future").classList.remove("hidden"), 2400);
+            setTimeout(() => document.querySelector(".today_words").classList.remove("hidden"), 3200);
+            setTimeout(() => {
+                document.querySelector("h1").classList.remove("hidden");
+                document.querySelector(".header__text").classList.remove("hidden");
+            }, 4000);
+            setTimeout(() => {
+                document.querySelector(".career__wrapper").classList.remove("hidden");
+                document.querySelector("#career__btn").classList.add("bob");
+            }, 4800);
+        });
+
+
+        //キャリア診断にチェックして、診断を押したら//
+        //チェック項目に該当する解決策を条件分岐で表示させたい//
+
+
+        //①キャリア診断のボタンを押すと、チェックリストが表示される//
+        //クリックした時にチェック項目の頭位置にスクロールダウンできないか？//
+
+        $(document).ready(function () {
+            $("#career__btn").click(function () {
+                $(".checkform__wrapper").removeClass("hidden");
+            });
+        });
+
+
+
+        //②チェックリストにチェックをして、診断ボタンを押すと該当する解決策が表示される//
+        //////////////////////////////////////////////
+        ////将来的には、複数選択をして診断した際に、
+        ////結果の画像をスライドショー形式で表示したい
+        //////////////////////////////////////////////
+
+        $(document).ready(function () {
+            // 診断ボタンがクリックされたときの処理
+            $("#diagnosis__btn").on("click", function () {
+
+                ////////////////////////////////////////////////////////////////////
+                //この部分は、チェックされたチェックボックスの値を取得するためのコード。
+                //まず、$("#check_form input:checked")というjQueryセレクタを使って、チェックされたinput要素を取得。map()関数を使用して、各要素の値を配列に変換しています。各要素の値は、$(this).val()を使って取得されます。
+                //map()関数は、与えられた関数を各要素に適用し、その結果を新しい配列として返します。そして、get()関数を使用して、jQueryオブジェクトを配列に変換しています。
+                //つまり、このコードは、チェックされたチェックボックスの値を配列として取得するためのものであり、その後の処理で使用されます。
+                ////////////////////////////////////////////////////////////////////
+
+                let checkedLists = $("#check_form input:checked").map(function () {
+                    return $(this).val();
+                }).get();
+
+                // チェックされた値によって画像を変更する処理
+                let imageList = [];
+
+                if (checkedLists.includes("yarigai")) {
+                    imageList.push("img/yarigai.png");
+                }
+                if (checkedLists.includes("strength")) {
+                    imageList.push("img/strength.png");
+                }
+                if (checkedLists.includes("value")) {
+                    imageList.push("img/value.png");
+                }
+                if (checkedLists.includes("jobchange")) {
+                    imageList.push("img/jobchange.png");
+                }
+                if (checkedLists.includes("startup")) {
+                    imageList.push("img/startup.png");
+                }
+                if (checkedLists.includes("income")) {
+                    imageList.push("img/income.png");
+                }
+                if (checkedLists.includes("balance")) {
+                    imageList.push("img/balance.png");
+                }
+
+                // すでに表示されている画像を削除する
+                //jQuery の siblings() と remove() メソッドを組み合わせて使用
+                //siblings(): このメソッドは、選択した要素のすべての兄弟要素を返します。特定のセレクタに一致する兄弟要素だけを返すこともできます。このコードでは、$("#result__img") で id 属性が result__img の要素を選択し、その兄弟要素の中から img タグの要素を絞り込んでいる。
+                //remove(): このメソッドは、選択した要素を DOM から完全に削除します。要素に関連するイベントや jQuery データも削除されます。
+
+                $("#result__img").siblings("img").remove();
+
+                // 画像をすべて表示する前に、元々表示されていた画像を非表示にする
+                $("#result__img").hide();
+
+                // 画像をすべて表示する
+                let resultImg = $("#result__img");
+                imageList.forEach(function (img) {
+                    resultImg.after(`<img src="${img}" style="margin: 0 0 35px;">`);
+                });
+
+                // ヒント画像を表示する
+                if (checkedLists.length >= 1) {
+                    resultImg.after('<img src="img/hint.png" style="margin: 0 0 10px;">');
+                }
+
+                // 診断ボタンがクリックされたら、3秒後に指定のコード部分が表示されるようにする
+                setTimeout(function () {
+                    $("#after_service_img").removeClass("hidden");
+                }, 2000);
+
+                // #after-imagesが表示された3秒後に#paidlistが表示されるようにする
+                setTimeout(function () {
+                    $("#paidlist").removeClass("hidden");
+                }, 4000);
+
+            });
+        });
+
+
+        ///////////////////////////////////////////////////
+        ///個別サポートにマウスを合わせるとオススメに切り替わる///// 
+        ///////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#support").hover(
+                function () {
+                    $(this).attr("src", "img/support_reco.png");
+                },
+                function () {
+                    $(this).attr("src", "img/support.png");
+                }
+            );
+        });
+
+
+        //////////////////////////////////////////////////////////////////
+        ///人生に影響を与えた本と名言にマウスを合わせるとクリック画像と切り替わる///// 
+        //////////////////////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#word").hover(
+                function () {
+                    $(this).attr("src", "img/click.png");
+                },
+                function () {
+                    $(this).attr("src", "img/word_top.png");
+                }
+            );
+        });
+
+        ////////////////////////////////////////////////
+        ///// 人生に影響を与えた本と名言をランダム表示する/////
+        ////////////////////////////////////////////////
+
+
+        $(document).ready(function () {
+            $("#word").click(function () {
+                const min = 1;
+                const max = 60;
+                const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+                const newSrc = "img/word_" + num + ".png";
+                $("#word").attr("src", newSrc);
+            });
+        });
+
+        ///////////////////////////////////////////////////
+        ///１日１問にマウスを合わせるとクリック画像と切り替わる///// 
+        ///////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#QA").hover(
+                function () {
+                    $(this).attr("src", "img/today_QA.png");
+                },
+                function () {
+                    $(this).attr("src", "img/QA_top.png");
+                }
+            );
+        });
+
+        ////////////////////////////////////////////////
+        ///// 1日１問、人生を変える質問をランダム表示する/////
+        ////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            $("#QA").click(function () {
+                const min = 1;
+                const max = 10;
+                const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+                const newSrc = "img/QA_" + num + ".png";
+                $("#QA").attr("src", newSrc);
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

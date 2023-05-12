@@ -23,37 +23,38 @@
         <div class="select_wrapper">
             <p class="select_text">条件を絞る</p>
             <div class="keyword_wrapper">
-                <input class="keyword" id="Keyword" type="text" name="keyword" size="30" maxlength="45" value
-                    placeholder="キーワード［例：コーチ、名前、起業、転職、子育］" autocomplete="off">
-                <div class="keyword_clear_btn">
-                </div>
+                <input class="keyword" id="keyword" type="text" name="keyword" size="30" maxlength="45" value
+                    placeholder="キーワード［例：コーチ、名前、SNS発信、世界観］" autocomplete="off">
             </div>
             <label for="select-header">
                 <select class="field" name="field" id="field">
-                    <option value="career" selected>キャリアの見直し</option>
-                    <option value="startup">起業・複業</option>
+                    <option value="content" selected>ご相談内容</option>
+                    <option value="career">キャリアチェンジ</option>
+                    <option value="startup">起業・副業</option>
                     <option value="jobchange">転職</option>
                     <option value="childcare">子育て</option>
                     <option value="strength">強みの発掘</option>
                     <option value="human">人間関係</option>
                     <option value="money">お金・資産運用</option>
-                    <option value="health">健康・美容</option>
                 </select>
             </label>
             <label for="select-header">
                 <select class="price" name="price" id="price">
+                    <option value="text" selected>セッション価格</option>
                     <option value="free">無料</option>
-                    <option value="5000" selected>〜4,000円</option>
-                    <option value="8000">〜8,000円</option>
-                    <option value="10000">〜10,000円</option>
-                    <option value="12000">〜12,000円</option>
-                    <option value="14000">〜14,000円</option>
-                    <option value="16000">〜16,000円</option>
-                    <option value="18000">〜18,000円</option>
-                    <option value="20000">〜20,000円</option>
+                    <option value="3300">3,300円〜</option>
+                    <option value="4400">4,400円〜</option>
+                    <option value="5500">5,500円〜</option>
+                    <option value="6600">6,600円〜</option>
+                    <option value="9900">9,900円〜</option>
+                    <option value="11000">11,000円〜</option>
+                    <option value="12600">12,600円〜</option>
+                    <option value="16500">16,500円〜</option>
+                    <option value="18000">18,000円〜</option>
+                    <option value="20000">20,000円〜</option>
                 </select>
             </label>
-            <p class="select_btn">検索</p>
+            <button class="select_btn" id="select_btn">検索</button>
         </div>
 
         <div class="supporter__wrapper">
@@ -73,139 +74,261 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
 
+        //////////////////////////////////////////////////////
+        //////検索ボタンを押すと
+        //オススメの専門家が最大３名まで表示されるようにしたい！
+        //////////////////////////////////////////////////////
 
-        //GEEKをみつける、ボタンを押したら
-        //オススメGEEKの写真が差し代わるようにしたい！
+        $(document).ready(function () {
+            var imageDatabase = {
+                // このデータベースは仮のもので、各画像がどのキーワード、フィールド、価格帯に対応するかを示しています
+                // 実際のデータベースは異なる形式で存在するかもしれません
+
+                "1": {
+                    "keywords": ["世界観プロデューサー", "世界観", "世界観づくり", "WEBデザイン", "HP制作", "てらだゆかこ", "brandneu", "SNS発信"],
+                    "field": ["startup", "strength"],
+                    "price": "11000"
+                },
+
+                "2": {
+                    "keywords": ["コーチ", "キャリアコンサルタント", "近藤あつこ", "Voicyパーソナリティ", "コーチング", "自分軸"],
+                    "field": ["career", "startup", "jobchange", "strength", "human"],
+                    "price": "3300"
+                },
+
+                "3": {
+                    "keywords": ["ライフワークコーチ", "コーチ", "コーチング", "キャリアコンサルタント", "加藤", "Voicyパーソナリティ", "加藤晶子"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human"],
+                    "price": "5500"
+                },
+
+                "4": {
+                    "keywords": ["キャリアデザインコーチ", "キャリアデザイン", "コーチ", "コーチング", "美甘敦子", "Voicyパーソナリティ", "SNS発信", "ライティング"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human"],
+                    "price": "16500"
+                },
+
+                "5": {
+                    "keywords": ["セルフチューニング", "新田純子", "縁側", "保育家", "心理カウンセラー", "Voicyパーソナリティ", "neiro"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human", "money"],
+                    "price": "20000"
+                },
+
+                "6": {
+                    "keywords": ["ライフキャリアカウンセラー", "水谷亜衣子", "キャリアコンサルタント", "Voicyパーソナリティ", "キャリア"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human"],
+                    "price": "4400"
+                },
+
+                "7": {
+                    "keywords": ["キャリアコンサルタント", "中嶌ゆみ", "なかじまゆみ", "ファミリーキャリア", "Voicyパーソナリティ", "自分軸"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human", "money"],
+                    "price": "4400"
+                },
+
+                "8": {
+                    "keywords": ["ストレングスコーチ", "石崎勝俊", "かつぴょん", "プロコーチ", "コーチング", "コーチ", "Voicyパーソナリティ", "クリフトンストレングス", "ストレングスファインダー"],
+                    "field": ["career", "startup", "jobchange", "strength", "human"],
+                    "price": "9900"
+                },
+
+                "9": {
+                    "keywords": ["キャリアアートディレクター", "ひやむたなおこ", "コーチ", "コーチング", "Voicyパーソナリティ", "フォトグラファー"],
+                    "field": ["career", "startup", "jobchange", "strength", "human"],
+                    "price": "11000"
+                },
+
+                "10": {
+                    "keywords": ["ライフコーチ", "イイダカナコ", "コーチ", "コーチング", "ゆるママ", "Voicyパーソナリティ", "暮らし"],
+                    "field": ["startup", "childcare", "human"],
+                    "price": "12600"
+                },
+
+                "11": {
+                    "keywords": ["資産形成プランナー", "保土田勇助", "金融教育", "Voicyパーソナリティ", "経済的自由"],
+                    "field": ["career", "startup", "jobchange", "money"],
+                    "price": "3300"
+                },
+
+                "12": {
+                    "keywords": ["パーソナルコーチ", "眞柄真有奈", "コーチ", "コーチング", "Voicyパーソナリティ"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human"],
+                    "price": "5500"
+                },
+
+                "13": {
+                    "keywords": ["タイムコーディネーター", "吉武麻子", "時間管理", "手帳", "Voicyパーソナリティ"],
+                    "field": ["career", "startup", "childcare"],
+                    "price": "16500"
+                },
+
+                "14": {
+                    "keywords": ["ライフコーチ", "ホイスラー愛", "コーチ", "コーチング", "海外", "海外移住"],
+                    "field": ["career", "jobchange", "childcare", "strength", "human"],
+                    "price": "11000"
+                },
+
+                "15": {
+                    "keywords": ["会計とビジネスの専門家", "田中純子", "会計", "確定申告", "税理士"],
+                    "field": ["startup", "money"],
+                    "price": "3300"
+                },
+
+                "16": {
+                    "keywords": ["フリーランスライター", "勝目麻希", "WEBライティング", "ライター"],
+                    "field": ["career", "startup", "jobchange", "money"],
+                    "price": "5500"
+                },
+
+                "17": {
+                    "keywords": ["ハハサス代表", "谷口ななえ", "主婦", "物販", "サステナブル"],
+                    "field": ["startup"],
+                    "price": "5500"
+                },
+
+                "18": {
+                    "keywords": ["ビジョナリーワークデザイナー", "鵜川洋明", "コミュニティ", "場づくり", "ビジョン"],
+                    "field": ["career", "startup", "jobchange"],
+                    "price": "11000"
+                },
+
+                "19": {
+                    "keywords": ["パーソナルコーチ", "小川恵子", "コーチング", "キャリアコンサルタント"],
+                    "field": ["career", "startup", "jobchange", "strength", "human"],
+                    "price": "8800"
+                },
+
+                "20": {
+                    "keywords": ["ビジネスコーチ", "坂本勝俊", "コーチ", "コーチング", "コーチングトレーナー"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human", "money"],
+                    "price": "16500"
+                },
+
+                "21": {
+                    "keywords": ["女性起業家向けお金の専門家", "長谷部敦子", "お金", "FP"],
+                    "field": ["career", "startup", "money"],
+                    "price": "16500"
+                },
+
+                "22": {
+                    "keywords": ["ライフキャリアデザイナー", "中尾あずさ", "ワーキングマザー", "ワーケーション"],
+                    "field": ["career", "jobchange", "childcare", "strength", "human"],
+                    "price": "6600"
+                },
+
+                "23": {
+                    "keywords": ["ライフスタイリスト", "北條久美子", "ライフデザイン"],
+                    "field": ["career", "human"],
+                    "price": "5500"
+                },
+
+                "24": {
+                    "keywords": ["ビジネスコーチ", "塚越絵美子", "コーチ"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength"],
+                    "price": "3300"
+                },
+
+                "25": {
+                    "keywords": ["食ビューティープランナー", "佐藤真実", "ファスティング", "ダイエット"],
+                    "field": ["career", "startup", "jobchange"],
+                    "price": "11000"
+                },
+
+                "26": {
+                    "keywords": ["ミアビータ代表", "中安加織", "中安"],
+                    "field": ["career", "startup", "jobchange", "childcare", "strength", "human", "money"],
+                    "price": "free",
+                },
+            };
+
+            $('#select_btn').click(function () {
+                let keyword = $('#keyword').val();
+                let field = $('#field').val();
+                let price = $('#price').val();
+
+                let matchingImages = [];
+
+                $.each(imageDatabase, function (imageNumber, imageData) {
+                    if ((keyword === "" || imageData.keywords.includes(keyword)) || imageData.field.includes(field) && imageData.price === price) {
+                        matchingImages.push({
+                            image: "img/supporter_" + imageNumber + ".png",
+                            link: getLinkForImage(imageNumber) // 画像ごとに異なるリンクを取得する関数を呼び出す
+                        });
+                        if (matchingImages.length === 3) return false; // 最大3つまでの画像に限定
+                    }
+                });
+
+                $(".supporter__wrapper").empty(); // 既存の画像をクリアする
+
+                let imageContainer = $("<div>").addClass("image-container"); // 画像を包むコンテナ要素を作成
+
+                if (matchingImages.length > 0) {
+                    $.each(matchingImages, function (index, imageData) {
+                        let imgElement = $("<img>").attr("src", imageData.image).addClass("supporter_img");
 
 
-        $("#result__btn").on("click", function () {
+                        if (imageData.link) {
+                            let linkElement = $("<a>").attr("href", imageData.link).append(imgElement);
+                            imageContainer.append(linkElement); // リンク要素をコンテナに追加
+                        } else {
+                            imageContainer.append(imgElement); // コンテナに画像を追加
+                        }
+                    });
+                } else {
+                    let imgElement = $("<img>").attr("src", "img/non_supporter.png").addClass("supporter_img");
+                    imageContainer.append(imgElement); // コンテナに代替画像を追加
+                }
 
-            //セレクトボックスの値を取得      
-            const selectedGender = $("#gender").val();
-            const selectedRegion = $("#reigion").val();
-            const selectedLanguage = $("#language").val();
-            const selectedCareer = $("#career").val();
-            const selectedHobby = $("#hobby").val();
+                $(".supporter__wrapper").append(imageContainer); // コンテナをサポーターのラッパーに追加
+            });
 
+            function getLinkForImage(imageNumber) {
+                // 各画像に対応するリンクを返す関数の実装（例: imageNumberに対応するリンクを返す）
+                // リンクがない場合はnullを返す
+                switch (imageNumber) {
+                    case "1": return "https://meavita.jp/support/11833/";
+                    case "2": return "https://meavita.jp/support/8776/";
+                    case "3": return "https://meavita.jp/support/918/";
+                    case "4": return "https://meavita.jp/support/7436/";
+                    case "5": return "https://meavita.jp/support/2101/";
+                    case "6": return "https://meavita.jp/support/6026/";
+                    case "7": return "https://meavita.jp/support/6073/";
+                    case "8": return "https://meavita.jp/support/1088/";
+                    case "9": return "https://meavita.jp/support/831/";
+                    case "10": return "https://meavita.jp/support/3587/";
+                    case "11": return "https://meavita.jp/support/4339/";
+                    case "12": return "https://meavita.jp/support/823/";
+                    case "13": return "https://meavita.jp/support/652/";
+                    case "14": return "https://meavita.jp/support/1832/";
+                    case "15": return "https://meavita.jp/support/3318/";
+                    case "16": return "https://meavita.jp/support/5850/";
+                    case "17": return "https://meavita.jp/support/8349/";
+                    case "18": return "https://meavita.jp/support/768/";
+                    case "19": return "https://meavita.jp/support/9306/";
+                    case "20": return "https://meavita.jp/support/1092/";
+                    case "21": return "https://meavita.jp/support/5969/";
+                    case "22": return "https://meavita.jp/support/5937/";
+                    case "23": return "https://meavita.jp/support/788/";
+                    case "24": return "https://meavita.jp/support/5784/";
+                    case "25": return "https://meavita.jp/support/806/";
+                    case "26": return "https://service.meavita.jp/offers/4kWyRGh6";
 
-            //*--if分岐処理--*//
-
-            //画像のパスを格納する変数
-            let view = "";
-
-            if (selectedGender === "男性" &&
-                (selectedRegion === "東京" || selectedRegion === "福岡市") &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React" || selectedLanguage === "PHP" || selectedLanguage === "JAVA" || selectedLanguage === "Python" || selectedLanguage === "Laravel") &&
-                selectedCareer === "10年以上" &&
-                selectedHobby === "ロック"
-            ) {
-                view = "img/geek1.png";
-
-                //表示処理
-                //attr() 関数の第一引数に属性名（この場合は "src"）を指定し、第二引数に属性値を指定する必要があります。
-                $("#result_img").attr("src", view);
-                $("#result_text").text("★ KING of GEEK ★");
-                $("#result_text").css("color", "blue");
-                $("#result_text").css("font-weight", "bold");
-                $("#geek1_audio").get(0).play();
-
-            } if (selectedGender === "男性" &&
-                selectedRegion === "北九州市" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React") &&
-                selectedCareer === "5年以上" &&
-                selectedHobby === "ゲーム"
-            ) {
-                view = "img/geek2.png";
-
-                //表示処理
-
-                $("#result_img").attr("src", view);
-                $("#result_text").text("ビジョンやコンセプトづくりならお任せ");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
-
-            } if (selectedGender === "男性" &&
-                selectedRegion === "山口" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React" || selectedLanguage === "PHP" || selectedLanguage === "JAVA" || selectedLanguage === "Python") &&
-                selectedCareer === "5年以上" &&
-                selectedHobby === "サウナ"
-            ) {
-                view = "img/geek3.png";
-
-                //表示処理
-
-                $("#result_img").attr("src", view);
-                $("#result_text").text("焼肉といえば！やすもり3代目");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
-                $("#geek3_audio").get(0).play();
-
-            } if (selectedGender === "男性" &&
-                selectedRegion === "北九州市" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS" || selectedLanguage === "React") &&
-                selectedCareer === "5年以上" &&
-                selectedHobby === "登山"
-            ) {
-                view = "img/geek4.png";
-
-                //表示処理
-
-                $("#result_img").attr("src", view);
-                $("#result_text").text("職人技ひかるGEEK");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
-
-            } if (selectedGender === "女性" &&
-                selectedRegion === "北九州市" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
-                selectedCareer === "未経験" &&
-                selectedHobby === "ワイン"
-            ) {
-                view = "img/geek5.png";
-
-                //表示処理
-
-                $("#result_img").attr("src", view);
-                $("#result_text").text("ワインとジンとプログラミングに乾杯〜");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
-                $("#geek5_audio").get(0).play();
-
-
-            } if (selectedGender === "男性" &&
-                selectedRegion === "福岡市" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
-                selectedCareer === "未経験" &&
-                selectedHobby === "筋トレ"
-            ) {
-                view = "img/geek6.png";
-
-                //表示処理
-
-                $("#result_img").attr("src", view);
-                $("#result_text").text("福岡を明るくするぞ！バカチンガー！！");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
-                $("#geek6_audio").get(0).play();
-
-            } if (selectedGender === "男性" &&
-                selectedRegion === "福岡市" &&
-                (selectedLanguage === "HTML" || selectedLanguage === "CSS" || selectedLanguage === "JS") &&
-                selectedCareer === "3年未満" &&
-                selectedHobby === "筋トレ"
-            ) {
-                view = "img/geek7.png";
-
-                //表示処理
-                //attr() 関数の第一引数に属性名（この場合は "src"）を指定し、第二引数に属性値を指定する必要があります。
-                $("#result_img").attr("src", view);
-                $("#result_text").text("よっ！名幹事");
-                $("#result_text").css("color", "black");
-                $("#result_text").css("font-weight", "bold");
+                    default:
+                        return null; // リンクがない場合はnullを返す
+                }
             }
 
-        })
+            $(".supporter__wrapper").append(imageContainer); // コンテナをサポーターのラッパーに追加
 
+            // 画像をクリックした際の処理を追加
+            $(".supporter__wrapper").on("click", ".supporter_img", function () {
+                let link = $(this).data("link"); // 画像に設定されたリンクを取得
+                if (link) {
+                    window.open(link, target = "_blank"); // リンクを新しいタブで開く
+                }
+            });
+
+        });
 
     </script>
 

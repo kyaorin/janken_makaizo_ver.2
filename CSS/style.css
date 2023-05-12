@@ -320,11 +320,10 @@ h1 {
 }
 
 .select_btn {
-    padding-left: 1.4rem;
-    padding-right: 20px;
+    padding: 5px 20px;
     font-size: 14px;
     color: white;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #52b4b9;
     border-width: 1px;
     margin: 0 0 0 20px;
@@ -346,9 +345,14 @@ h1 {
 }
 
 .supporter_img {
-    width: 300px;
-    height: 300px;
+    width: 245px;
+    height: 318px;
     margin-bottom: 80px;
+}
+
+.image-container {
+    display: flex;
+    gap: 10px;
 }
 
 
